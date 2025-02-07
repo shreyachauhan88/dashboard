@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronics Shop Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Sidebar -->
+    <div class="flex">
+        <aside class="w-64 bg-blue-900 text-white min-h-screen p-5">
+            <h2 class="text-2xl font-bold mb-5">ElectroDash</h2>
+            <nav>
+                <ul>
+                    <li class="mb-3"><a href="#" class="block p-2 bg-blue-700 rounded">Dashboard</a></li>
+                    <li class="mb-3"><a href="#" class="block p-2 hover:bg-blue-700 rounded">Sales</a></li>
+                    <li class="mb-3"><a href="#" class="block p-2 hover:bg-blue-700 rounded">Orders</a></li>
+                    <li class="mb-3"><a href="#" class="block p-2 hover:bg-blue-700 rounded">Products</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">Dashboard Overview</h1>
+
+            <!-- Cards Section -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-5 rounded-lg shadow">
+                    <h3 class="text-xl font-bold text-gray-600">Total Sales</h3>
+                    <p class="text-2xl font-bold mt-2">₹25,340</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow">
+                    <h3 class="text-xl font-bold text-gray-600">Total Orders</h3>
+                    <p class="text-2xl font-bold mt-2">320</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow">
+                    <h3 class="text-xl font-bold text-gray-600">New Customers</h3>
+                    <p class="text-2xl font-bold mt-2">85</p>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                <div class="bg-white p-5 rounded-lg shadow">
+                    <h3 class="text-lg font-bold text-gray-600">Sales Breakdown</h3>
+                    <canvas id="pieChart"></canvas>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow">
+                    <h3 class="text-lg font-bold text-gray-600">Revenue Trends</h3>
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Sales Table -->
+            <div class="bg-white p-5 rounded-lg shadow mt-8">
+                <h3 class="text-lg font-bold text-gray-600 mb-4">Recent Sales</h3>
+                <table class="w-full border-collapse border border-gray-200">
+                    <thead class="bg-blue-900 text-white">
+                        <tr>
+                            <th class="p-2 border">Order ID</th>
+                            <th class="p-2 border">Product</th>
+                            <th class="p-2 border">Price</th>
+                            <th class="p-2 border">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center border-b">
+                            <td class="p-2 border">#101</td>
+                            <td class="p-2 border">Laptop</td>
+                            <td class="p-2 border">₹1,200</td>
+                            <td class="p-2 border">Feb 5, 2025</td>
+                        </tr>
+                        <tr class="text-center border-b">
+                            <td class="p-2 border">#102</td>
+                            <td class="p-2 border">Smartphone</td>
+                            <td class="p-2 border">₹800</td>
+                            <td class="p-2 border">Feb 6, 2025</td>
+                        </tr>
+                        <tr class="text-center border-b">
+                            <td class="p-2 border">#103</td>
+                            <td class="p-2 border">Smartwatch</td>
+                            <td class="p-2 border">₹350</td>
+                            <td class="p-2 border">Feb 7, 2025</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- ChartJS Scripts -->
+    <script>
+        // Pie Chart
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+        new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Laptops', 'Smartphones', 'Accessories'],
+                datasets: [{
+                    data: [40, 35, 25],
+                    backgroundColor: ['#1D4ED8', '#9333EA', '#F59E0B']
+                }]
+            }
+        });
+
+        // Bar Chart
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [{
+                    label: 'Revenue (₹)',
+                    data: [5000, 7000, 8500, 10000, 12000],
+                    backgroundColor: ['#10B981', '#3B82F6', '#F97316', '#EC4899', '#8B5CF6']
+                }]
+            }
+        });
+    </script>
+</body>
+</html>
